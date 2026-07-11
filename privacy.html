@@ -4,20 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー｜読書空間</title>
-  <meta name="description" content="読書記録・本棚管理・積読管理を行うiOSアプリ「読書空間」のプライバシーポリシーです。読書データは端末内に保存されます。広告目的のトラッキングは行わず、Firebase Analyticsを利用状況の把握と品質改善のために使用します。">
+  <meta name="description" content="読書空間のプライバシーポリシーです。読書データは端末内に保存され、広告目的のトラッキングは行いません。Firebase Analyticsは利用状況の把握と品質改善のために使用します。">
   <style>
     :root {
       --bg: #070A0F;
       --bg-soft: #0D1118;
-      --card: #141A23;
-      --card-strong: #1A2230;
-      --border: #263142;
+      --panel: #111722;
+      --line: #253041;
       --text: #F5F7FA;
       --muted: #AAB2C0;
-      --subtle: #6F7887;
+      --subtle: #738091;
       --accent: #F2C94C;
       --accent-soft: rgba(242, 201, 76, 0.14);
-      --shadow: rgba(0, 0, 0, 0.35);
     }
 
     * {
@@ -34,17 +32,33 @@
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 18% 10%, rgba(242, 201, 76, 0.10), transparent 28%),
-        radial-gradient(circle at 82% 0%, rgba(115, 137, 174, 0.14), transparent 30%),
-        linear-gradient(180deg, #0A0F17 0%, var(--bg) 48%, #05070B 100%);
+        radial-gradient(circle at 18% 12%, rgba(242, 201, 76, 0.08), transparent 26%),
+        radial-gradient(circle at 84% 0%, rgba(110, 132, 171, 0.12), transparent 28%),
+        linear-gradient(180deg, #0A0F17 0%, var(--bg) 42%, #05070B 100%);
       line-height: 1.85;
-      letter-spacing: 0.02em;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     main {
       width: min(820px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 72px 0 56px;
+      padding: 56px 0 44px;
+    }
+
+    .back {
+      display: inline-flex;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--subtle);
     }
 
     .badge {
@@ -52,64 +66,66 @@
       align-items: center;
       gap: 8px;
       padding: 6px 12px;
-      border: 1px solid rgba(242, 201, 76, 0.32);
+      border: 1px solid rgba(242, 201, 76, 0.28);
       border-radius: 999px;
-      color: var(--accent);
       background: var(--accent-soft);
+      color: var(--accent);
       font-size: 13px;
-      font-weight: 650;
+      font-weight: 600;
     }
 
     h1 {
       margin: 18px 0 12px;
-      font-size: clamp(30px, 5vw, 44px);
-      line-height: 1.12;
-      letter-spacing: -0.05em;
+      font-size: 38px;
+      line-height: 1.15;
+      font-weight: 500;
+      letter-spacing: 0;
     }
 
     .lead {
       margin: 0;
-      max-width: 640px;
+      max-width: 680px;
       color: var(--muted);
-      font-size: clamp(15px, 2vw, 18px);
+      font-size: 16px;
+      line-height: 1.95;
     }
 
     .updated {
       display: inline-flex;
-      margin-top: 20px;
+      margin-top: 18px;
       padding: 10px 14px;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
+      background: rgba(17, 23, 34, 0.78);
       color: var(--muted);
-      background: rgba(20, 26, 35, 0.78);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     section {
       margin-top: 22px;
       padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: rgba(20, 26, 35, 0.82);
-      box-shadow: 0 18px 64px rgba(0, 0, 0, 0.20);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      background: rgba(17, 23, 34, 0.86);
     }
 
     h2 {
       margin: 0 0 14px;
-      font-size: 21px;
-      letter-spacing: -0.03em;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 600;
     }
 
-    section h2 .num {
+    .num {
       color: var(--accent);
       margin-right: 10px;
       font-variant-numeric: tabular-nums;
     }
 
     h3 {
-      margin: 22px 0 8px;
+      margin: 20px 0 8px;
       font-size: 16px;
-      color: var(--text);
+      line-height: 1.5;
     }
 
     p {
@@ -133,7 +149,11 @@
 
     .strong {
       color: var(--text);
-      font-weight: 650;
+      font-weight: 600;
+    }
+
+    .links {
+      margin-top: 12px;
     }
 
     .footer {
@@ -141,36 +161,24 @@
       justify-content: space-between;
       gap: 16px;
       margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 20px;
       color: var(--subtle);
       font-size: 13px;
+      flex-wrap: wrap;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .back {
-      display: inline-block;
-      margin-bottom: 4px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 520px) {
+    @media (max-width: 640px) {
       main {
         width: min(100% - 28px, 640px);
-        padding-top: 48px;
+        padding-top: 28px;
+      }
+
+      h1 {
+        font-size: 30px;
       }
 
       section {
         padding: 22px;
-        border-radius: 22px;
       }
 
       .footer {
@@ -185,13 +193,13 @@
     <div class="badge">プライバシーポリシー</div>
     <h1>プライバシーポリシー</h1>
     <p class="lead">iOSアプリ「読書空間」（以下「本アプリ」）における、利用者情報の取り扱いについて定めます。</p>
-    <div class="updated">最終更新日：2026年7月5日</div>
+    <div class="updated">最終更新日：2026年7月11日</div>
 
     <section>
       <h2><span class="num">1</span>基本方針</h2>
-      <p>本アプリは、利用者が記録した<span class="strong">読書データを端末内にのみ保存</span>します。アカウント登録は不要で、開発元（fun-products）は利用者の読書データを収集・保管しません。</p>
-      <p>本アプリは<span class="strong">広告の表示および広告目的のトラッキングを行いません</span>。</p>
-      <p>利用状況の把握と品質改善のため、Firebase Analyticsを使用します。Firebase Analyticsで収集される情報は、広告配信、広告ターゲティング、他社アプリ・Webサイトを横断した追跡には使用しません。</p>
+      <p>本アプリは、利用者が記録した <span class="strong">読書データを端末内に保存</span> します。アカウント登録は不要で、開発元が利用者の読書データを収集・保管することはありません。</p>
+      <p>本アプリは <span class="strong">広告の表示および広告目的のトラッキングを行いません</span> 。</p>
+      <p>利用状況の把握と品質改善のために Firebase Analytics を使用しますが、広告配信、広告ターゲティング、他社アプリやWebサイトを横断した追跡には使用しません。</p>
     </section>
 
     <section>
@@ -200,15 +208,16 @@
       <ul>
         <li>本棚の登録内容（タイトル、著者、ISBN、出版社などの書誌情報）</li>
         <li>読書状態・所有状態</li>
-        <li>メモ、評価、読み始めた日・読了日</li>
+        <li>メモ、評価、読み始めた日、読了日</li>
         <li>表紙画像のキャッシュ</li>
+        <li>アプリ内で設定した図書館の情報</li>
       </ul>
     </section>
 
     <section>
       <h2><span class="num">3</span>外部サービスへの送信</h2>
-      <p>本アプリは、本を検索するときに、<span class="strong">利用者が入力した検索語のみ</span>を外部の書誌情報サービスへ送信します。書籍の表紙画像を取得するために、これらのサービスへ通信する場合があります。</p>
-      <p>本棚の登録内容、メモ、評価、読み始めた日・読了日、バックアップ（JSON）の内容は、外部サービスへ送信しません。</p>
+      <p>本アプリは、本を検索するときに、<span class="strong">利用者が入力した検索語やISBNのみ</span> を外部の書誌情報サービスへ送信します。書籍の表紙画像を取得するために、これらのサービスへ通信する場合があります。</p>
+      <p>本棚の登録内容、メモ、評価、読み始めた日、読了日、バックアップ（JSON）の内容は、外部サービスへ送信しません。</p>
       <h3>利用する外部サービス</h3>
       <ul>
         <li>楽天ブックス書籍検索API（楽天ウェブサービス）</li>
@@ -221,23 +230,22 @@
 
     <section>
       <h2><span class="num">4</span>カメラの利用</h2>
-      <p>本アプリは、本のISBNバーコードを読み取って登録するためにカメラを使用します。バーコードの読み取りは<span class="strong">端末内で処理</span>され、カメラの映像や撮影画像を保存・外部送信することはありません。</p>
+      <p>本アプリは、本のISBNバーコードを読み取って登録するためにカメラを使用します。バーコードの読み取りは <span class="strong">端末内で処理</span> され、カメラの映像や撮影画像を保存・外部送信することはありません。</p>
       <p>カメラの利用は、利用者が許可した場合にのみ行われます。</p>
     </section>
 
     <section>
-      <h2><span class="num">5</span>データの保存・削除・バックアップ</h2>
-      <p>読書データは端末内に保存され、本アプリを削除すると端末から削除されます。</p>
-      <p>機種変更やアプリ削除に備えて、設定画面からJSON形式でデータをエクスポート（書き出し）・インポート（読み込み）できます。エクスポートしたファイルの保存先・共有方法は利用者が管理します。</p>
+      <h2><span class="num">5</span>iCloud同期</h2>
+      <p>iCloudにサインインしている場合、本アプリはユーザー本人のCloudKit private databaseを使って同期します。iCloud未サインインでも、本アプリはローカルで動作します。</p>
     </section>
 
     <section>
       <h2><span class="num">6</span>利用状況の計測</h2>
-      <p>本アプリでは、アプリの利用状況を把握し、機能改善や不具合調査に役立てるため、Firebase Analyticsを使用します。</p>
-      <p>Firebase Analyticsにより、アプリの起動、画面表示、機能の利用状況、端末の種類、OS、概略地域、アプリ内購入に関する情報、アプリインスタンス識別子などが収集される場合があります。</p>
-      <p>本アプリでは、書名、著者名、ISBN、検索キーワード、メモ本文など、利用者の読書内容そのものをFirebase Analyticsのイベントとして送信しない設計にしています。</p>
+      <p>本アプリでは、アプリの利用状況を把握し、機能改善や不具合調査に役立てるため、Firebase Analytics を使用します。</p>
+      <p>Firebase Analytics により、アプリの起動、画面表示、機能の利用状況、端末の種類、OS、概略地域、アプリ内購入に関する情報、アプリインスタンス識別子などが収集される場合があります。</p>
+      <p>本アプリでは、書名、著者名、ISBN、検索キーワード、メモ本文など、利用者の読書内容そのものを Firebase Analytics のイベントとして送信しない設計にしています。</p>
       <p>Firebase Analyticsで収集される情報の取り扱いについては、GoogleおよびFirebaseの説明もあわせてご確認ください。</p>
-      <ul>
+      <ul class="links">
         <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy and Security in Firebase</a></li>
         <li><a href="https://support.google.com/firebase/answer/6318039" target="_blank" rel="noopener">Firebase Help: Data collection</a></li>
         <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google プライバシーポリシー</a></li>
@@ -245,9 +253,8 @@
     </section>
 
     <section>
-      <h2><span class="num">7</span>広告識別子とトラッキング</h2>
-      <p>本アプリでは、IDFA（広告識別子）の取得、AdSupport.frameworkの利用、AppTrackingTransparencyによる広告目的のトラッキング許可要求は行いません。</p>
-      <p>Firebase Analyticsで収集される情報は、広告配信、広告ターゲティング、他社アプリ・Webサイトを横断したユーザー追跡、データブローカーへの共有には使用しません。</p>
+      <h2><span class="num">7</span>位置情報と地図</h2>
+      <p>本アプリ自体は現在地を取得しません。図書館の地図リンクは Apple マップを開き、選択した図書館の場所を表示します。</p>
     </section>
 
     <section>
