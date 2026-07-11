@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>読書空間</title>
-  <meta name="description" content="読書記録・本棚管理・積読管理を行うiOSアプリ「読書空間」の紹介ページです。">
+  <title>読書空間｜本棚と読書記録</title>
+  <meta name="description" content="読書空間は、本棚管理・読書記録・データの振り返りをまとめたiOSアプリです。バーコード、キーワード、手入力で本を追加でき、iCloud同期やProの図書館在庫検索、連続読み取り、深い統計に対応します。">
   <style>
     :root {
       --bg: #070A0F;
       --bg-soft: #0D1118;
-      --card: #141A23;
-      --card-strong: #1A2230;
-      --border: #263142;
+      --panel: #111722;
+      --panel-strong: #18202D;
+      --line: #253041;
       --text: #F5F7FA;
       --muted: #AAB2C0;
-      --subtle: #6F7887;
+      --subtle: #738091;
       --accent: #F2C94C;
       --accent-soft: rgba(242, 201, 76, 0.14);
-      --shadow: rgba(0, 0, 0, 0.35);
+      --shadow: rgba(0, 0, 0, 0.32);
     }
 
     * {
@@ -34,183 +34,11 @@
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 18% 10%, rgba(242, 201, 76, 0.10), transparent 28%),
-        radial-gradient(circle at 82% 0%, rgba(115, 137, 174, 0.14), transparent 30%),
-        linear-gradient(180deg, #0A0F17 0%, var(--bg) 48%, #05070B 100%);
+        radial-gradient(circle at 18% 12%, rgba(242, 201, 76, 0.08), transparent 26%),
+        radial-gradient(circle at 84% 0%, rgba(110, 132, 171, 0.12), transparent 28%),
+        linear-gradient(180deg, #0A0F17 0%, var(--bg) 42%, #05070B 100%);
       line-height: 1.75;
-      letter-spacing: 0.02em;
-    }
-
-    main {
-      width: min(960px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 72px 0 56px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
-      align-items: center;
-      margin-bottom: 32px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border: 1px solid rgba(242, 201, 76, 0.32);
-      border-radius: 999px;
-      color: var(--accent);
-      background: var(--accent-soft);
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    h1 {
-      margin: 18px 0 12px;
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 1.05;
-      letter-spacing: -0.06em;
-    }
-
-    .lead {
-      margin: 0;
-      max-width: 620px;
-      color: var(--muted);
-      font-size: clamp(16px, 2vw, 19px);
-    }
-
-    .status {
-      display: inline-flex;
-      margin-top: 24px;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      color: var(--muted);
-      background: rgba(20, 26, 35, 0.78);
-      font-size: 14px;
-    }
-
-    .cover-stack {
-      position: relative;
-      min-height: 320px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 32px;
-      background: linear-gradient(145deg, rgba(26, 34, 48, 0.92), rgba(13, 17, 24, 0.94));
-      box-shadow: 0 24px 80px var(--shadow);
-      overflow: hidden;
-    }
-
-    .cover-stack::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.05), transparent 34%),
-        radial-gradient(circle at 70% 20%, rgba(242,201,76,0.22), transparent 24%);
-    }
-
-    .book {
-      position: absolute;
-      width: 118px;
-      height: 176px;
-      border-radius: 12px 16px 16px 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: linear-gradient(160deg, #273247, #111823);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.36);
-    }
-
-    .book::after {
-      content: "";
-      position: absolute;
-      left: 16px;
-      top: 18px;
-      bottom: 18px;
-      width: 1px;
-      background: rgba(255, 255, 255, 0.16);
-    }
-
-    .book:nth-child(1) {
-      left: 72px;
-      top: 76px;
-      transform: rotate(-8deg);
-      background: linear-gradient(160deg, #39445C, #151B26);
-    }
-
-    .book:nth-child(2) {
-      left: 166px;
-      top: 56px;
-      transform: rotate(5deg);
-      background: linear-gradient(160deg, #6A5527, #171B22);
-    }
-
-    .book:nth-child(3) {
-      left: 252px;
-      top: 92px;
-      transform: rotate(11deg);
-      background: linear-gradient(160deg, #26384B, #121820);
-    }
-
-    section {
-      margin-top: 24px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: rgba(20, 26, 35, 0.82);
-      box-shadow: 0 18px 64px rgba(0, 0, 0, 0.20);
-    }
-
-    h2 {
-      margin: 0 0 18px;
-      font-size: 22px;
-      letter-spacing: -0.03em;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .features li {
-      min-height: 96px;
-      padding: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--card-strong), var(--card));
-      font-size: 14px;
-      font-weight: 650;
-    }
-
-    .features li span {
-      display: block;
-      width: 28px;
-      height: 3px;
-      margin-bottom: 14px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .note {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--subtle);
-      font-size: 13px;
+      letter-spacing: 0;
     }
 
     a {
@@ -222,41 +50,435 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 820px) {
-      main {
-        width: min(100% - 28px, 640px);
-        padding-top: 48px;
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 56px 0 44px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 32px;
+      color: var(--subtle);
+      font-size: 13px;
+    }
+
+    .topbar__links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 40px;
+      align-items: center;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid rgba(242, 201, 76, 0.28);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: 52px;
+      line-height: 1.08;
+      font-weight: 300;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 660px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      background: rgba(20, 26, 35, 0.72);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .hero__note {
+      margin-top: 18px;
+      color: var(--subtle);
+      font-size: 13px;
+    }
+
+    .mockup {
+      position: relative;
+      min-height: 460px;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(24, 32, 45, 0.94), rgba(13, 17, 24, 0.96));
+      box-shadow: 0 24px 80px var(--shadow);
+      overflow: hidden;
+    }
+
+    .mockup::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04), transparent 36%),
+        radial-gradient(circle at 75% 18%, rgba(242, 201, 76, 0.16), transparent 22%);
+      pointer-events: none;
+    }
+
+    .device {
+      position: relative;
+      width: min(100%, 360px);
+      margin-left: auto;
+      border-radius: 28px;
+      padding: 18px;
+      background: #0B1017;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+    }
+
+    .device__bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .device__title {
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .shelf {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .book {
+      min-height: 112px;
+      padding: 12px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+    }
+
+    .book:nth-child(1) {
+      background: linear-gradient(180deg, #364257, #161C27);
+    }
+
+    .book:nth-child(2) {
+      background: linear-gradient(180deg, #6D572B, #181C24);
+    }
+
+    .book:nth-child(3) {
+      background: linear-gradient(180deg, #24384D, #121820);
+    }
+
+    .book:nth-child(4) {
+      background: linear-gradient(180deg, #394A5E, #151B25);
+    }
+
+    .book:nth-child(5) {
+      background: linear-gradient(180deg, #5A4669, #18141F);
+    }
+
+    .book:nth-child(6) {
+      background: linear-gradient(180deg, #334455, #121820);
+    }
+
+    .book__line {
+      display: block;
+      width: 28px;
+      height: 3px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .book__title {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .book__meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .mockup__stack {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      width: min(48%, 220px);
+      display: grid;
+      gap: 10px;
+    }
+
+    .summary {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(17, 23, 34, 0.92);
+    }
+
+    .summary__label {
+      color: var(--subtle);
+      font-size: 11px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .summary__value {
+      margin: 0;
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .section__heading {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    .section__copy {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.9;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .feature {
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(24, 32, 45, 0.96), rgba(17, 23, 34, 0.96));
+    }
+
+    .feature__kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--accent);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 18px;
+      align-items: start;
+      margin-top: 22px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: rgba(17, 23, 34, 0.82);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .list strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      background: rgba(17, 23, 34, 0.86);
+    }
+
+    .table th,
+    .table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .table th {
+      color: var(--text);
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .table td {
+      color: var(--muted);
+    }
+
+    .table tr:last-child th,
+    .table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .note {
+      margin-top: 16px;
+      color: var(--subtle);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 22px;
+      color: var(--subtle);
+      font-size: 13px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 960px) {
+      h1 {
+        font-size: 42px;
       }
 
-      .hero {
+      .hero,
+      .split {
         grid-template-columns: 1fr;
       }
 
-      .cover-stack {
-        min-height: 240px;
+      .mockup {
+        min-height: auto;
       }
 
-      .book:nth-child(1) { left: 52px; top: 52px; }
-      .book:nth-child(2) { left: 142px; top: 34px; }
-      .book:nth-child(3) { left: 228px; top: 66px; }
+      .device {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .mockup__stack {
+        position: static;
+        width: 100%;
+        margin-top: 14px;
+      }
 
       .features {
         grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 640px) {
+      main {
+        width: min(100% - 28px, 640px);
+        padding-top: 28px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .topbar__links {
+        justify-content: flex-start;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
       .features {
         grid-template-columns: 1fr;
       }
 
-      section {
-        padding: 22px;
-        border-radius: 22px;
-      }
-
-      .cover-stack {
-        display: none;
+      .shelf {
+        grid-template-columns: 1fr 1fr;
       }
 
       .footer {
@@ -267,39 +489,161 @@
 </head>
 <body>
   <main>
-    <div class="hero">
-      <div>
-        <div class="badge">iOS App / 開発中</div>
-        <h1>読書空間</h1>
-        <p class="lead">読書記録・本棚管理・積読管理を行う、静かで上質な読書管理アプリです。</p>
-        <div class="status">現在開発中です。App Store公開後に情報を更新します。</div>
-      </div>
-
-      <div class="cover-stack" aria-hidden="true">
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
+    <div class="topbar">
+      <div>読書空間 / iOS</div>
+      <div class="topbar__links">
+        <a href="./privacy.html">プライバシーポリシー</a>
+        <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせ</a>
       </div>
     </div>
 
+    <header class="hero">
+      <div>
+        <div class="badge">本棚・読書記録・データ</div>
+        <h1>読書空間</h1>
+        <p class="lead">読みたい・読書中・読了・休止を整理し、バーコード、キーワード、手入力で本をすばやく追加。iCloud同期で端末間でも使いやすく、Proで図書館在庫検索、連続読み取り、深い統計が使えます。</p>
+        <div class="chips" aria-label="アプリの特長">
+          <span class="chip">広告なし</span>
+          <span class="chip">アカウント不要</span>
+          <span class="chip">iCloud同期</span>
+          <span class="chip">ダーク表示</span>
+        </div>
+        <p class="hero__note">読書データは端末内に保存されます。検索時のみ、必要な書誌情報を外部サービスへ問い合わせます。</p>
+      </div>
+
+      <div class="mockup" aria-hidden="true">
+        <div class="device">
+          <div class="device__bar">
+            <span>本棚</span>
+            <span class="device__title">読書空間</span>
+          </div>
+          <div class="shelf">
+            <div class="book"><span class="book__line"></span><p class="book__title">読みたい本</p><p class="book__meta">状態で整理</p></div>
+            <div class="book"><span class="book__line"></span><p class="book__title">読書中の1冊</p><p class="book__meta">メモと評価</p></div>
+            <div class="book"><span class="book__line"></span><p class="book__title">読了の記録</p><p class="book__meta">月別で振り返る</p></div>
+            <div class="book"><span class="book__line"></span><p class="book__title">図書館の本</p><p class="book__meta">所有状態で管理</p></div>
+            <div class="book"><span class="book__line"></span><p class="book__title">休止した本</p><p class="book__meta">あとで戻す</p></div>
+            <div class="book"><span class="book__line"></span><p class="book__title">おすすめ候補</p><p class="book__meta">傾向に合う本</p></div>
+          </div>
+        </div>
+
+        <div class="mockup__stack">
+          <div class="summary">
+            <div class="summary__label">追加方法</div>
+            <p class="summary__value">バーコード / キーワード / 手入力</p>
+          </div>
+          <div class="summary">
+            <div class="summary__label">振り返り</div>
+            <p class="summary__value">月別の読了数、現在の状況、年間のまとめ</p>
+          </div>
+          <div class="summary">
+            <div class="summary__label">Pro</div>
+            <p class="summary__value">図書館在庫検索、連続読み取り、深い統計</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <section>
-      <h2>主な機能</h2>
-      <ul class="features">
-        <li><span></span>読んだ本の記録</li>
-        <li><span></span>本棚管理</li>
-        <li><span></span>積読管理</li>
-        <li><span></span>書籍検索</li>
-        <li><span></span>表紙画像の表示</li>
-      </ul>
+      <div class="section__heading">
+        <h2>できること</h2>
+      </div>
+      <p class="section__copy">今のアプリで実際に使える範囲を、そのまま見せる構成にしています。見た目よりも、何ができるかを短く分かりやすく整理しています。</p>
+
+      <div class="features">
+        <article class="feature">
+          <div class="feature__kicker">01</div>
+          <h3>本棚を整理する</h3>
+          <p>読みたい、読書中、読了、休止の4状態と、紙の本・電子書籍・図書館・未購入の所有状態で管理できます。</p>
+        </article>
+        <article class="feature">
+          <div class="feature__kicker">02</div>
+          <h3>すばやく登録する</h3>
+          <p>ISBNバーコード、キーワード検索、手入力の3つの導線から本を追加できます。検索結果からそのまま登録できます。</p>
+        </article>
+        <article class="feature">
+          <div class="feature__kicker">03</div>
+          <h3>読書を振り返る</h3>
+          <p>月別の読了数、年ごとのまとめ、今月の状況をまとめて確認できます。月を選ぶと読了一覧も見られます。</p>
+        </article>
+        <article class="feature">
+          <div class="feature__kicker">04</div>
+          <h3>おすすめを見る</h3>
+          <p>読書傾向に合う、まだ本棚にない本を表示します。ジャンル付きの読了本が増えるほど精度が上がります。</p>
+        </article>
+        <article class="feature">
+          <div class="feature__kicker">05</div>
+          <h3>iCloudで同期する</h3>
+          <p>同じApple IDの端末でデータを使いやすく保てます。iCloud未サインインでもローカルで使えます。</p>
+        </article>
+        <article class="feature">
+          <div class="feature__kicker">06</div>
+          <h3>Proで広げる</h3>
+          <p>図書館在庫検索、バーコード連続読み取り、深い統計を買い切りで解放します。復元購入にも対応しています。</p>
+        </article>
+      </div>
     </section>
 
     <section>
-      <h2>外部サービスの利用</h2>
-      <p class="note">本アプリでは、書籍検索および表紙画像取得のために楽天ブックス書籍検索APIを利用します。</p>
+      <div class="section__heading">
+        <h2>主な画面</h2>
+      </div>
+      <p class="section__copy">本棚とデータの2つを中心に、追加・詳細・図書館・Proの流れがつながる構成です。画面名はアプリ内の表現に合わせています。</p>
+
+      <table class="table" aria-label="主な画面一覧">
+        <tr>
+          <th>本棚</th>
+          <td>検索、状態切り替え、複数選択、一括変更、追加の入り口をまとめたメイン画面です。</td>
+        </tr>
+        <tr>
+          <th>本の追加</th>
+          <td>バーコード読み取り、キーワード検索、手入力から登録できます。</td>
+        </tr>
+        <tr>
+          <th>本の詳細</th>
+          <td>メモ、評価、読了日、所有状態などを確認・編集できます。</td>
+        </tr>
+        <tr>
+          <th>データ</th>
+          <td>月別の読了数、今月の状況、年別の推移、Proの深掘りデータを表示します。</td>
+        </tr>
+        <tr>
+          <th>あなたへのおすすめ</th>
+          <td>読書傾向に合う、まだ本棚にない本を表示します。</td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <div class="section__heading">
+        <h2>データの扱い</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p class="section__copy">読書データは端末内に保存されます。広告表示や広告目的のトラッキングは行いません。利用状況の把握と品質改善には Firebase Analytics を使いますが、読書内容そのものを広告用途に使う設計にはしていません。</p>
+          <p class="note">検索時は、利用者が入力したキーワードやISBNを外部の書誌情報サービスへ送信します。表紙画像の取得に外部通信が発生する場合があります。図書館在庫検索は Pro 機能です。</p>
+        </div>
+
+        <ul class="list">
+          <li><strong>保存</strong> 本棚データ、状態、メモ、評価、読了日、表紙キャッシュ</li>
+          <li><strong>同期</strong> iCloudのprivate databaseを使用</li>
+          <li><strong>検索</strong> 楽天ブックス、Google Books、NDL Search、openBD</li>
+          <li><strong>計測</strong> Firebase Analyticsで利用状況を計測</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="section__heading">
+        <h2>お問い合わせ</h2>
+      </div>
+      <p class="section__copy">不具合報告や要望はフォームから受け付けています。確認が必要な内容は、アプリ内の画面名に合わせて伝えてください。</p>
+      <p class="note">開発元: fun-products / <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせフォーム</a></p>
     </section>
 
     <div class="footer">
-      <span>開発元：fun-products</span>
+      <span>開発元: fun-products</span>
+      <span><a href="./privacy.html">プライバシーポリシー</a></span>
       <span>© 2026 Reading Space</span>
     </div>
   </main>
