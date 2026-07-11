@@ -7,38 +7,40 @@
   <meta name="description" content="読書空間は、本棚管理・読書記録・データの振り返りをまとめたiOSアプリです。バーコード、キーワード、手入力で本を追加でき、iCloud同期やProの図書館在庫検索、連続読み取り、深い統計に対応します。">
   <style>
     :root {
-      --bg: #070A0F;
-      --bg-soft: #0D1118;
-      --panel: #111722;
-      --panel-strong: #18202D;
-      --line: #253041;
-      --text: #F5F7FA;
-      --muted: #AAB2C0;
-      --subtle: #738091;
-      --accent: #F2C94C;
-      --accent-soft: rgba(242, 201, 76, 0.14);
-      --shadow: rgba(0, 0, 0, 0.32);
+      color-scheme: dark;
+      --bg: #070a0f;
+      --bg-soft: #0d1118;
+      --surface: rgba(18, 24, 34, 0.82);
+      --surface-strong: rgba(22, 29, 41, 0.94);
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #f5f7fa;
+      --muted: #aab2c0;
+      --subtle: #778190;
+      --accent: #f2c94c;
+      --accent-soft: rgba(242, 201, 76, 0.12);
+      --shadow: rgba(0, 0, 0, 0.28);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html {
       background: var(--bg);
+      overflow-x: clip;
     }
 
     body {
       margin: 0;
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      color: var(--text);
       background:
-        radial-gradient(circle at 18% 12%, rgba(242, 201, 76, 0.08), transparent 26%),
-        radial-gradient(circle at 84% 0%, rgba(110, 132, 171, 0.12), transparent 28%),
-        linear-gradient(180deg, #0A0F17 0%, var(--bg) 42%, #05070B 100%);
-      line-height: 1.75;
+        radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.03), transparent 26%),
+        radial-gradient(circle at 88% 2%, rgba(242, 201, 76, 0.06), transparent 24%),
+        linear-gradient(180deg, #0b0f16 0%, var(--bg) 42%, #05070b 100%);
+      color: var(--text);
+      line-height: 1.7;
       letter-spacing: 0;
+      overflow-x: clip;
+      font-feature-settings: "ss01" 1;
     }
 
     a {
@@ -51,22 +53,22 @@
     }
 
     main {
-      width: min(1120px, calc(100% - 40px));
+      width: min(1080px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 56px 0 44px;
+      padding: 52px 0 44px;
     }
 
-    .topbar {
+    .topline {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       align-items: center;
       margin-bottom: 32px;
       color: var(--subtle);
       font-size: 13px;
     }
 
-    .topbar__links {
+    .topline__links {
       display: flex;
       gap: 18px;
       flex-wrap: wrap;
@@ -75,109 +77,94 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 40px;
-      align-items: center;
-      padding-bottom: 36px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 36px;
+      align-items: start;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 6px 12px;
-      border: 1px solid rgba(242, 201, 76, 0.28);
+      border: 1px solid rgba(242, 201, 76, 0.24);
       border-radius: 999px;
       background: var(--accent-soft);
       color: var(--accent);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
+      letter-spacing: 0.03em;
     }
 
     h1 {
-      margin: 18px 0 12px;
-      font-size: 52px;
-      line-height: 1.08;
-      font-weight: 300;
+      margin: 16px 0 12px;
+      font-size: clamp(40px, 5vw, 58px);
+      line-height: 1.04;
+      font-weight: 500;
       letter-spacing: 0;
     }
 
     .lead {
       margin: 0;
-      max-width: 660px;
+      max-width: 640px;
       color: var(--muted);
       font-size: 18px;
-      line-height: 1.9;
+      line-height: 1.85;
     }
 
-    .chips {
+    .meta {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 22px;
     }
 
-    .chip {
-      padding: 8px 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .meta span {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(20, 26, 35, 0.72);
+      background: rgba(255, 255, 255, 0.02);
       color: var(--text);
-      font-size: 13px;
+      font-size: 12px;
     }
 
-    .hero__note {
-      margin-top: 18px;
+    .note {
+      margin-top: 16px;
       color: var(--subtle);
       font-size: 13px;
+      line-height: 1.75;
     }
 
-    .mockup {
-      position: relative;
-      min-height: 460px;
-      padding: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 28px;
-      background: linear-gradient(145deg, rgba(24, 32, 45, 0.94), rgba(13, 17, 24, 0.96));
-      box-shadow: 0 24px 80px var(--shadow);
-      overflow: hidden;
-    }
-
-    .mockup::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04), transparent 36%),
-        radial-gradient(circle at 75% 18%, rgba(242, 201, 76, 0.16), transparent 22%);
-      pointer-events: none;
-    }
-
-    .device {
-      position: relative;
-      width: min(100%, 360px);
-      margin-left: auto;
-      border-radius: 28px;
+    .preview {
       padding: 18px;
-      background: #0B1017;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(20, 26, 36, 0.96), rgba(13, 17, 24, 0.98));
+      box-shadow: 0 24px 80px var(--shadow);
     }
 
-    .device__bar {
+    .preview__screen {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(10, 14, 20, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .preview__bar {
       display: flex;
       justify-content: space-between;
+      gap: 12px;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       color: var(--muted);
       font-size: 12px;
     }
 
-    .device__title {
+    .preview__title {
       color: var(--text);
       font-weight: 600;
-      letter-spacing: 0;
     }
 
     .shelf {
@@ -187,138 +174,116 @@
     }
 
     .book {
-      min-height: 112px;
+      min-height: 108px;
       padding: 12px 10px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(56, 68, 87, 0.95), rgba(19, 24, 35, 0.95));
     }
 
-    .book:nth-child(1) {
-      background: linear-gradient(180deg, #364257, #161C27);
-    }
-
-    .book:nth-child(2) {
-      background: linear-gradient(180deg, #6D572B, #181C24);
-    }
-
-    .book:nth-child(3) {
-      background: linear-gradient(180deg, #24384D, #121820);
-    }
-
-    .book:nth-child(4) {
-      background: linear-gradient(180deg, #394A5E, #151B25);
-    }
-
-    .book:nth-child(5) {
-      background: linear-gradient(180deg, #5A4669, #18141F);
-    }
-
-    .book:nth-child(6) {
-      background: linear-gradient(180deg, #334455, #121820);
-    }
+    .book:nth-child(2) { background: linear-gradient(180deg, rgba(106, 86, 43, 0.96), rgba(20, 23, 32, 0.95)); }
+    .book:nth-child(3) { background: linear-gradient(180deg, rgba(38, 57, 78, 0.96), rgba(17, 21, 30, 0.95)); }
+    .book:nth-child(4) { background: linear-gradient(180deg, rgba(58, 74, 94, 0.96), rgba(19, 24, 34, 0.95)); }
+    .book:nth-child(5) { background: linear-gradient(180deg, rgba(90, 70, 105, 0.96), rgba(22, 18, 29, 0.95)); }
+    .book:nth-child(6) { background: linear-gradient(180deg, rgba(52, 68, 85, 0.96), rgba(16, 20, 29, 0.95)); }
 
     .book__line {
       display: block;
-      width: 28px;
+      width: 26px;
       height: 3px;
       margin-bottom: 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .book__title {
       margin: 0;
-      font-size: 13px;
-      line-height: 1.5;
       color: var(--text);
+      font-size: 13px;
+      line-height: 1.45;
       font-weight: 600;
     }
 
     .book__meta {
-      margin-top: 8px;
+      margin-top: 7px;
       color: var(--muted);
       font-size: 11px;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
-    .mockup__stack {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-      width: min(48%, 220px);
+    .preview__stack {
       display: grid;
       gap: 10px;
+      margin-top: 10px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .summary {
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(17, 23, 34, 0.92);
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(17, 23, 34, 0.86);
     }
 
     .summary__label {
+      margin-bottom: 8px;
       color: var(--subtle);
       font-size: 11px;
-      margin-bottom: 8px;
-      text-transform: uppercase;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .summary__value {
       margin: 0;
       color: var(--text);
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.55;
       font-weight: 600;
     }
 
     section {
-      padding: 32px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .section__heading {
+    .section-head {
       display: flex;
       align-items: baseline;
       gap: 10px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     h2 {
       margin: 0;
-      font-size: 22px;
-      line-height: 1.25;
+      font-size: 21px;
+      line-height: 1.3;
       font-weight: 600;
+      letter-spacing: 0;
     }
 
-    .section__copy {
+    .section-copy {
       margin: 0;
-      color: var(--muted);
       max-width: 760px;
-      line-height: 1.9;
+      color: var(--muted);
+      line-height: 1.85;
     }
 
     .features {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 22px;
+      margin-top: 20px;
     }
 
     .feature {
-      padding: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(24, 32, 45, 0.96), rgba(17, 23, 34, 0.96));
+      padding: 18px 0 0;
     }
 
     .feature__kicker {
       display: inline-block;
       margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 3px solid var(--accent);
+      padding-bottom: 7px;
+      border-bottom: 2px solid var(--accent);
       color: var(--accent);
       font-size: 12px;
       font-weight: 700;
@@ -326,7 +291,7 @@
     }
 
     .feature h3 {
-      margin: 0 0 8px;
+      margin: 0 0 7px;
       font-size: 16px;
       line-height: 1.5;
     }
@@ -340,27 +305,30 @@
 
     .split {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-      gap: 18px;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 22px;
       align-items: start;
-      margin-top: 22px;
+      margin-top: 18px;
     }
 
     .list {
-      display: grid;
-      gap: 10px;
       margin: 0;
       padding: 0;
       list-style: none;
+      display: grid;
+      gap: 10px;
     }
 
     .list li {
-      padding: 14px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      background: rgba(17, 23, 34, 0.82);
+      padding: 14px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.75;
+    }
+
+    .list li:first-child {
+      border-top: 0;
+      padding-top: 0;
     }
 
     .list strong {
@@ -371,43 +339,35 @@
     .table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      background: rgba(17, 23, 34, 0.86);
+      margin-top: 18px;
+    }
+
+    .table tr {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .table tr:first-child {
+      border-top: 0;
     }
 
     .table th,
     .table td {
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 14px 0;
       text-align: left;
       vertical-align: top;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .table th {
+      width: 180px;
       color: var(--text);
       font-weight: 600;
-      background: rgba(255, 255, 255, 0.02);
+      padding-right: 20px;
     }
 
     .table td {
       color: var(--muted);
-    }
-
-    .table tr:last-child th,
-    .table tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .note {
-      margin-top: 16px;
-      color: var(--subtle);
-      font-size: 13px;
-      line-height: 1.8;
     }
 
     .footer {
@@ -421,32 +381,17 @@
     }
 
     @media (max-width: 960px) {
-      h1 {
-        font-size: 42px;
-      }
-
       .hero,
       .split {
         grid-template-columns: 1fr;
       }
 
-      .mockup {
-        min-height: auto;
-      }
-
-      .device {
-        width: 100%;
-        margin-left: 0;
-      }
-
-      .mockup__stack {
-        position: static;
-        width: 100%;
-        margin-top: 14px;
-      }
-
       .features {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .table th {
+        width: 150px;
       }
     }
 
@@ -456,12 +401,12 @@
         padding-top: 28px;
       }
 
-      .topbar {
-        align-items: flex-start;
+      .topline {
         flex-direction: column;
+        align-items: flex-start;
       }
 
-      .topbar__links {
+      .topline__links {
         justify-content: flex-start;
       }
 
@@ -477,8 +422,13 @@
         grid-template-columns: 1fr;
       }
 
-      .shelf {
+      .shelf,
+      .preview__stack {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .table th {
+        width: 108px;
       }
 
       .footer {
@@ -489,9 +439,9 @@
 </head>
 <body>
   <main>
-    <div class="topbar">
+    <div class="topline">
       <div>読書空間 / iOS</div>
-      <div class="topbar__links">
+      <div class="topline__links">
         <a href="./privacy.html">プライバシーポリシー</a>
         <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせ</a>
       </div>
@@ -499,23 +449,23 @@
 
     <header class="hero">
       <div>
-        <div class="badge">本棚・読書記録・データ</div>
+        <div class="eyebrow">本棚・読書記録・データ</div>
         <h1>読書空間</h1>
         <p class="lead">読みたい・読書中・読了・休止を整理し、バーコード、キーワード、手入力で本をすばやく追加。iCloud同期で端末間でも使いやすく、Proで図書館在庫検索、連続読み取り、深い統計が使えます。</p>
-        <div class="chips" aria-label="アプリの特長">
-          <span class="chip">広告なし</span>
-          <span class="chip">アカウント不要</span>
-          <span class="chip">iCloud同期</span>
-          <span class="chip">ダーク表示</span>
+        <div class="meta" aria-label="アプリの特長">
+          <span>広告なし</span>
+          <span>アカウント不要</span>
+          <span>iCloud同期</span>
+          <span>ダーク表示</span>
         </div>
-        <p class="hero__note">読書データは端末内に保存されます。検索時のみ、必要な書誌情報を外部サービスへ問い合わせます。</p>
+        <p class="note">読書データは端末内に保存されます。検索時のみ、必要な書誌情報を外部サービスへ問い合わせます。</p>
       </div>
 
-      <div class="mockup" aria-hidden="true">
-        <div class="device">
-          <div class="device__bar">
+      <div class="preview" aria-hidden="true">
+        <div class="preview__screen">
+          <div class="preview__bar">
             <span>本棚</span>
-            <span class="device__title">読書空間</span>
+            <span class="preview__title">読書空間</span>
           </div>
           <div class="shelf">
             <div class="book"><span class="book__line"></span><p class="book__title">読みたい本</p><p class="book__meta">状態で整理</p></div>
@@ -527,7 +477,7 @@
           </div>
         </div>
 
-        <div class="mockup__stack">
+        <div class="preview__stack">
           <div class="summary">
             <div class="summary__label">追加方法</div>
             <p class="summary__value">バーコード / キーワード / 手入力</p>
@@ -545,10 +495,10 @@
     </header>
 
     <section>
-      <div class="section__heading">
+      <div class="section-head">
         <h2>できること</h2>
       </div>
-      <p class="section__copy">今のアプリで実際に使える範囲を、そのまま見せる構成にしています。見た目よりも、何ができるかを短く分かりやすく整理しています。</p>
+      <p class="section-copy">今のアプリで実際に使える範囲を、そのまま見せる構成にしています。見た目よりも、何ができるかを短く分かりやすく整理しています。</p>
 
       <div class="features">
         <article class="feature">
@@ -585,10 +535,10 @@
     </section>
 
     <section>
-      <div class="section__heading">
+      <div class="section-head">
         <h2>主な画面</h2>
       </div>
-      <p class="section__copy">本棚とデータの2つを中心に、追加・詳細・図書館・Proの流れがつながる構成です。画面名はアプリ内の表現に合わせています。</p>
+      <p class="section-copy">本棚とデータを中心に、追加・詳細・図書館・Proの流れがつながる構成です。画面名はアプリ内の表現に合わせています。</p>
 
       <table class="table" aria-label="主な画面一覧">
         <tr>
@@ -615,12 +565,12 @@
     </section>
 
     <section>
-      <div class="section__heading">
+      <div class="section-head">
         <h2>データの扱い</h2>
       </div>
       <div class="split">
         <div>
-          <p class="section__copy">読書データは端末内に保存されます。広告表示や広告目的のトラッキングは行いません。利用状況の把握と品質改善には Firebase Analytics を使いますが、読書内容そのものを広告用途に使う設計にはしていません。</p>
+          <p class="section-copy">読書データは端末内に保存されます。広告表示や広告目的のトラッキングは行いません。利用状況の把握と品質改善には Firebase Analytics を使いますが、読書内容そのものを広告用途に使う設計にはしていません。</p>
           <p class="note">検索時は、利用者が入力したキーワードやISBNを外部の書誌情報サービスへ送信します。表紙画像の取得に外部通信が発生する場合があります。図書館在庫検索は Pro 機能です。</p>
         </div>
 
@@ -634,10 +584,10 @@
     </section>
 
     <section>
-      <div class="section__heading">
+      <div class="section-head">
         <h2>お問い合わせ</h2>
       </div>
-      <p class="section__copy">不具合報告や要望はフォームから受け付けています。確認が必要な内容は、アプリ内の画面名に合わせて伝えてください。</p>
+      <p class="section-copy">不具合報告や要望はフォームから受け付けています。確認が必要な内容は、アプリ内の画面名に合わせて伝えてください。</p>
       <p class="note">開発元: fun-products / <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせフォーム</a></p>
     </section>
 
