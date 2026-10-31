@@ -4,227 +4,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー｜読書空間</title>
-  <meta name="description" content="読書空間のプライバシーポリシーです。読書データは端末内に保存され、広告目的のトラッキングは行いません。Firebase Analyticsは利用状況の把握と品質改善のために使用します。">
-  <style>
-    :root {
-      --bg: #070A0F;
-      --bg-soft: #0D1118;
-      --panel: #111722;
-      --line: #253041;
-      --text: #F5F7FA;
-      --muted: #AAB2C0;
-      --subtle: #738091;
-      --accent: #F2C94C;
-      --accent-soft: rgba(242, 201, 76, 0.14);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      background: var(--bg);
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 18% 12%, rgba(242, 201, 76, 0.08), transparent 26%),
-        radial-gradient(circle at 84% 0%, rgba(110, 132, 171, 0.12), transparent 28%),
-        linear-gradient(180deg, #0A0F17 0%, var(--bg) 42%, #05070B 100%);
-      line-height: 1.85;
-      letter-spacing: 0;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      width: min(820px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 56px 0 44px;
-    }
-
-    .back {
-      display: inline-flex;
-      margin-bottom: 14px;
-      font-size: 13px;
-      color: var(--subtle);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border: 1px solid rgba(242, 201, 76, 0.28);
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    h1 {
-      margin: 18px 0 12px;
-      font-size: 38px;
-      line-height: 1.15;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      margin: 0;
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.95;
-    }
-
-    .updated {
-      display: inline-flex;
-      margin-top: 18px;
-      padding: 10px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      background: rgba(17, 23, 34, 0.78);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    section {
-      margin-top: 22px;
-      padding: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      background: rgba(17, 23, 34, 0.86);
-    }
-
-    h2 {
-      margin: 0 0 14px;
-      font-size: 20px;
-      line-height: 1.35;
-      font-weight: 600;
-    }
-
-    .num {
-      color: var(--accent);
-      margin-right: 10px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    h3 {
-      margin: 20px 0 8px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    p {
-      margin: 0 0 12px;
-      color: var(--muted);
-    }
-
-    p:last-child {
-      margin-bottom: 0;
-    }
-
-    ul {
-      margin: 0 0 12px;
-      padding-left: 1.2em;
-      color: var(--muted);
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
-
-    .strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .links {
-      margin-top: 12px;
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 28px;
-      padding-top: 20px;
-      color: var(--subtle);
-      font-size: 13px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 640px) {
-      main {
-        width: min(100% - 28px, 640px);
-        padding-top: 28px;
-      }
-
-      h1 {
-        font-size: 30px;
-      }
-
-      section {
-        padding: 22px;
-      }
-
-      .footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <meta name="description" content="読書空間のプライバシーポリシーです。本棚データの端末内保存とiCloud同期、外部サービスへの送信、Firebase Analyticsによる利用状況の計測について説明します。">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main>
-    <a class="back" href="./index.html">← 読書空間トップへ</a>
-    <div class="badge">プライバシーポリシー</div>
-    <h1>プライバシーポリシー</h1>
-    <p class="lead">iOSアプリ「読書空間」（以下「本アプリ」）における、利用者情報の取り扱いについて定めます。</p>
-    <div class="updated">最終更新日：2026年7月11日</div>
+  <main class="page">
+    <div class="topline">
+      <a class="topline__brand" href="./index.html">読書空間</a>
+      <div class="topline__links">
+        <a href="./index.html">トップへ戻る</a>
+        <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="policy">
+      <header class="policy__header">
+        <p class="overline">PRIVACY POLICY</p>
+        <h1>プライバシーポリシー</h1>
+        <p class="lead">iOSアプリ「読書空間」（以下「本アプリ」）における、利用者情報の取り扱いについて定めます。</p>
+        <p class="policy__updated">最終更新日：2026年10月31日</p>
+      </header>
 
     <section>
       <h2><span class="num">1</span>基本方針</h2>
-      <p>本アプリは、利用者が記録した <span class="strong">読書データを主に端末内に保存</span> します。アカウント登録は不要で、読書内容そのものを開発元が収集・保管することはありません。</p>
+      <p>本アプリは、利用者が記録した <span class="strong">読書データを端末内に保存</span> します。iCloudにサインインしている場合、本棚データは本人のCloudKit private databaseにも同期されます。アプリ独自のアカウント登録は不要で、読書内容そのものを開発元のサーバーで収集・保管することはありません。</p>
       <p>本アプリは <span class="strong">広告の表示および広告目的のトラッキングを行いません</span> 。</p>
       <p>利用状況の把握と品質改善のために Firebase Analytics を使用しますが、広告配信、広告ターゲティング、他社アプリやWebサイトを横断した追跡には使用しません。</p>
     </section>
 
     <section>
       <h2><span class="num">2</span>端末内に保存する情報</h2>
-      <p>本アプリでは、次の情報を利用者の端末内に保存します。これらは通常、開発元のサーバーへ送信しません。</p>
+      <p>本アプリでは、次の情報を利用者の端末内に保存します。本棚データはiCloud同期の対象です。検索やおすすめ表示などに伴う外部送信は次の節で説明します。</p>
       <ul>
         <li>本棚の登録内容（タイトル、著者、ISBN、出版社などの書誌情報）</li>
         <li>読書状態・所有状態</li>
         <li>メモ、評価、読み始めた日、読了日</li>
-        <li>表紙画像のキャッシュ</li>
+        <li>取得した表紙画像のキャッシュと、利用者が手動で設定した表紙画像</li>
         <li>アプリ内で設定した図書館の情報</li>
       </ul>
     </section>
 
     <section>
       <h2><span class="num">3</span>外部サービスへの送信</h2>
-      <p>本アプリは、本を検索するときに、<span class="strong">利用者が入力した検索語やISBNなど、検索に必要な情報</span> を外部の書誌情報サービスへ送信します。書籍の表紙画像を取得するために、これらのサービスへ通信する場合があります。</p>
-      <p>本棚の登録内容、メモ、評価、読み始めた日、読了日、バックアップ（JSON）の内容は、検索目的以外で外部サービスへ送信しません。</p>
+      <p>本を検索するときは、<span class="strong">利用者が入力した検索語やISBNなど</span> を書誌情報サービスへ送信します。表紙画像の取得時には、画像の取得先へ通信し、ISBNがURLに含まれる場合があります。</p>
+      <p>おすすめ表示では、読了本から端末内で選んだジャンルIDや著者名を楽天ブックスへ送信して候補を取得します。候補の選別と本棚にある本の除外は端末内で行います。</p>
+      <p>Proの図書館検索では、選択した都道府県・市区町村をカーリルへ送信して図書館を探します。在庫照会時には対象のISBNと登録した図書館の識別子をカーリルへ送信します。</p>
+      <p>メモ本文、評価の数値、読書状態、読書日付、バックアップ（JSON）の内容は、これらの検索・おすすめ・図書館照会のAPIへ送信しません。評価や読了日の情報は、端末内でおすすめ検索に使うジャンルID・著者名を選ぶ際に利用します。</p>
       <h3>利用する外部サービス</h3>
       <ul>
         <li>楽天ブックス書籍検索API（楽天ウェブサービス）</li>
         <li>Google Books API</li>
         <li>国立国会図書館サーチ（NDL Search）</li>
         <li>openBD</li>
+        <li>カーリル（図書館検索・在庫照会）</li>
       </ul>
+      <p>表紙画像の取得先には、楽天の画像配信先、Open Library、openBDなどが含まれる場合があります。</p>
       <p>これらのサービスにおける情報の取り扱いは、各サービスのプライバシーポリシーに従います。</p>
     </section>
 
@@ -236,13 +69,14 @@
 
     <section>
       <h2><span class="num">5</span>iCloud同期</h2>
-      <p>iCloudにサインインしている場合、本アプリはユーザー本人のCloudKit private databaseを使って同期します。iCloud未サインインでも、本アプリはローカルで動作します。</p>
+      <p>iCloudにサインインしている場合、本アプリはユーザー本人のCloudKit private databaseを使って、本棚に登録した書誌情報、読書状態、メモ、評価、日付などを同期します。iCloud未サインインでも、本アプリはローカルで動作します。</p>
+      <p>取得した表紙のキャッシュや手動で設定した表紙画像の本体、登録した図書館の設定はiCloud同期の対象外です。表紙の参照情報は本棚データの一部として同期される場合があります。</p>
     </section>
 
     <section>
       <h2><span class="num">6</span>利用状況の計測</h2>
       <p>本アプリでは、アプリの利用状況を把握し、機能改善や不具合調査に役立てるため、Firebase Analytics を使用します。</p>
-      <p>Firebase Analytics により、利用状況や端末・アプリの基本情報が収集される場合があります。詳細は Firebase 側の説明をご確認ください。</p>
+      <p>Firebase Analytics により、アプリの起動や機能利用、端末・OS、アプリ内購入に関する情報、アプリインスタンスの識別子、概略地域などが収集される場合があります。詳細は Firebase 側の説明をご確認ください。</p>
       <p>本アプリでは、書名、著者名、ISBN、検索キーワード、メモ本文など、利用者の読書内容そのものを分析用途のイベントとして送信しない設計にしています。</p>
       <p>Firebase Analyticsで収集される情報の取り扱いについては、GoogleおよびFirebaseの説明もあわせてご確認ください。</p>
       <ul class="links">
@@ -254,12 +88,12 @@
 
     <section>
       <h2><span class="num">7</span>位置情報と地図</h2>
-      <p>本アプリ自体は現在地を取得しません。図書館の地図リンクは Apple マップを開き、選択した図書館の場所を表示します。</p>
+      <p>本アプリ自体は端末の現在地を取得しません。図書館の地図リンクを利用すると、選択した図書館の名称・場所を使ってAppleマップの検索や表示を行います。</p>
     </section>
 
     <section>
       <h2><span class="num">8</span>子どものプライバシー</h2>
-      <p>本アプリは特定の年齢層を対象とせず、個人を特定する情報の登録を求めません。読書データはすべて端末内に保存されます。</p>
+      <p>本アプリは特定の年齢層を対象とせず、個人を特定する情報の登録を求めません。読書データの保存、同期、外部サービスへの送信については上記の各節をご確認ください。</p>
     </section>
 
     <section>
@@ -274,6 +108,7 @@
       お問い合わせ先：<a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">問い合わせフォーム</a></p>
     </section>
 
+    </div>
     <div class="footer">
       <span>開発元：fun-products</span>
       <span>© 2026 Reading Space</span>

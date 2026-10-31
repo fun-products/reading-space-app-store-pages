@@ -5,442 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>読書空間｜本棚と読書記録</title>
   <meta name="description" content="読書空間は、本棚管理・読書記録・データの振り返りをまとめたiOSアプリです。バーコード、キーワード、手入力で本を追加でき、iCloud同期やProの図書館在庫検索、連続読み取り、深い統計に対応します。">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #070a0f;
-      --bg-soft: #0d1118;
-      --surface: rgba(18, 24, 34, 0.82);
-      --surface-strong: rgba(22, 29, 41, 0.94);
-      --line: rgba(255, 255, 255, 0.08);
-      --text: #f5f7fa;
-      --muted: #aab2c0;
-      --subtle: #778190;
-      --accent: #f2c94c;
-      --accent-soft: rgba(242, 201, 76, 0.12);
-      --shadow: rgba(0, 0, 0, 0.28);
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      background: var(--bg);
-      overflow-x: clip;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
-      background:
-        radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.03), transparent 26%),
-        radial-gradient(circle at 88% 2%, rgba(242, 201, 76, 0.06), transparent 24%),
-        linear-gradient(180deg, #0b0f16 0%, var(--bg) 42%, #05070b 100%);
-      color: var(--text);
-      line-height: 1.7;
-      letter-spacing: 0;
-      overflow-x: clip;
-      font-feature-settings: "ss01" 1;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      width: min(1080px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 52px 0 44px;
-    }
-
-    .topline {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-      margin-bottom: 32px;
-      color: var(--subtle);
-      font-size: 13px;
-    }
-
-    .topline__links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-      gap: 36px;
-      align-items: start;
-      padding-bottom: 28px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border: 1px solid rgba(242, 201, 76, 0.24);
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
-    h1 {
-      margin: 16px 0 12px;
-      font-size: clamp(40px, 5vw, 58px);
-      line-height: 1.04;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      margin: 0;
-      max-width: 640px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.85;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .meta span {
-      padding: 7px 11px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--text);
-      font-size: 12px;
-    }
-
-    .note {
-      margin-top: 16px;
-      color: var(--subtle);
-      font-size: 13px;
-      line-height: 1.75;
-    }
-
-    .preview {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(20, 26, 36, 0.96), rgba(13, 17, 24, 0.98));
-      box-shadow: 0 24px 80px var(--shadow);
-    }
-
-    .preview__screen {
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(10, 14, 20, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .preview__bar {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 14px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .preview__title {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .shelf {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .book {
-      min-height: 108px;
-      padding: 12px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: linear-gradient(180deg, rgba(56, 68, 87, 0.95), rgba(19, 24, 35, 0.95));
-    }
-
-    .book:nth-child(2) { background: linear-gradient(180deg, rgba(106, 86, 43, 0.96), rgba(20, 23, 32, 0.95)); }
-    .book:nth-child(3) { background: linear-gradient(180deg, rgba(38, 57, 78, 0.96), rgba(17, 21, 30, 0.95)); }
-    .book:nth-child(4) { background: linear-gradient(180deg, rgba(58, 74, 94, 0.96), rgba(19, 24, 34, 0.95)); }
-    .book:nth-child(5) { background: linear-gradient(180deg, rgba(90, 70, 105, 0.96), rgba(22, 18, 29, 0.95)); }
-    .book:nth-child(6) { background: linear-gradient(180deg, rgba(52, 68, 85, 0.96), rgba(16, 20, 29, 0.95)); }
-
-    .book__line {
-      display: block;
-      width: 26px;
-      height: 3px;
-      margin-bottom: 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .book__title {
-      margin: 0;
-      color: var(--text);
-      font-size: 13px;
-      line-height: 1.45;
-      font-weight: 600;
-    }
-
-    .book__meta {
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.35;
-    }
-
-    .preview__stack {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .summary {
-      padding: 13px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(17, 23, 34, 0.86);
-    }
-
-    .summary__label {
-      margin-bottom: 8px;
-      color: var(--subtle);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .summary__value {
-      margin: 0;
-      color: var(--text);
-      font-size: 14px;
-      line-height: 1.55;
-      font-weight: 600;
-    }
-
-    section {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-head {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: 21px;
-      line-height: 1.3;
-      font-weight: 600;
-      letter-spacing: 0;
-    }
-
-    .section-copy {
-      margin: 0;
-      max-width: 760px;
-      color: var(--muted);
-      line-height: 1.85;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .feature {
-      padding: 18px 0 0;
-    }
-
-    .feature__kicker {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding-bottom: 7px;
-      border-bottom: 2px solid var(--accent);
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .feature h3 {
-      margin: 0 0 7px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-      gap: 22px;
-      align-items: start;
-      margin-top: 18px;
-    }
-
-    .list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .list li {
-      padding: 14px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .list li:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .list strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 18px;
-    }
-
-    .table tr {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .table tr:first-child {
-      border-top: 0;
-    }
-
-    .table th,
-    .table td {
-      padding: 14px 0;
-      text-align: left;
-      vertical-align: top;
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .table th {
-      width: 180px;
-      color: var(--text);
-      font-weight: 600;
-      padding-right: 20px;
-    }
-
-    .table td {
-      color: var(--muted);
-    }
-
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding-top: 22px;
-      color: var(--subtle);
-      font-size: 13px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 960px) {
-      .hero,
-      .split {
-        grid-template-columns: 1fr;
-      }
-
-      .features {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .table th {
-        width: 150px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      main {
-        width: min(100% - 28px, 640px);
-        padding-top: 28px;
-      }
-
-      .topline {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .topline__links {
-        justify-content: flex-start;
-      }
-
-      h1 {
-        font-size: 34px;
-      }
-
-      .lead {
-        font-size: 16px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .shelf,
-      .preview__stack {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .table th {
-        width: 108px;
-      }
-
-      .footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main>
+  <main class="page">
     <div class="topline">
-      <div>読書空間 / iOS</div>
+      <a class="topline__brand" href="./index.html">読書空間</a>
       <div class="topline__links">
         <a href="./privacy.html">プライバシーポリシー</a>
         <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせ</a>
@@ -448,147 +18,75 @@
     </div>
 
     <header class="hero">
-      <div>
-        <div class="eyebrow">本棚・読書記録・データ</div>
-        <h1>読書空間</h1>
-        <p class="lead">読みたい・読書中・読了・休止を整理し、バーコード、キーワード、手入力で本をすばやく追加。iCloud同期で端末間でも使いやすく、Proで図書館在庫検索、連続読み取り、深い統計が使えます。</p>
-        <div class="meta" aria-label="アプリの特長">
-          <span>広告なし</span>
-          <span>アカウント不要</span>
-          <span>iCloud同期</span>
-          <span>ダーク表示</span>
-        </div>
-        <p class="note">読書データは端末内に保存されます。検索時のみ、必要な書誌情報を外部サービスへ問い合わせます。</p>
+      <div class="hero__copy">
+        <p class="overline">READING SPACE · iOS</p>
+        <h1><span class="hero__headline-line">持っている本が、</span><span class="hero__headline-line">すぐわかる。</span></h1>
+        <p class="lead">読みたい本も、読んだ本も、ひとつの本棚に。バーコードで登録し、読書を記録。図書館の在庫も調べられます（Pro）。</p>
+        <a class="app-store-link" href="https://apps.apple.com/jp/app/%E8%AA%AD%E6%9B%B8%E7%A9%BA%E9%96%93-%E6%9C%AC%E6%A3%9A-%E8%AA%AD%E6%9B%B8%E8%A8%98%E9%8C%B2/id6787682270" target="_blank" rel="noopener noreferrer">App Storeで見る <span aria-hidden="true">↗</span></a>
+        <ul class="hero__facts" aria-label="アプリの特長">
+          <li>広告なし</li>
+          <li>アカウント登録不要</li>
+          <li>iCloud同期</li>
+        </ul>
       </div>
 
-      <div class="preview" aria-hidden="true">
-        <div class="preview__screen">
-          <div class="preview__bar">
-            <span>本棚</span>
-            <span class="preview__title">読書空間</span>
-          </div>
-          <div class="shelf">
-            <div class="book"><span class="book__line"></span><p class="book__title">読みたい本</p><p class="book__meta">状態で整理</p></div>
-            <div class="book"><span class="book__line"></span><p class="book__title">読書中の1冊</p><p class="book__meta">メモと評価</p></div>
-            <div class="book"><span class="book__line"></span><p class="book__title">読了の記録</p><p class="book__meta">月別で振り返る</p></div>
-            <div class="book"><span class="book__line"></span><p class="book__title">図書館の本</p><p class="book__meta">所有状態で管理</p></div>
-            <div class="book"><span class="book__line"></span><p class="book__title">休止した本</p><p class="book__meta">あとで戻す</p></div>
-            <div class="book"><span class="book__line"></span><p class="book__title">おすすめ候補</p><p class="book__meta">傾向に合う本</p></div>
-          </div>
-        </div>
-
-        <div class="preview__stack">
-          <div class="summary">
-            <div class="summary__label">追加方法</div>
-            <p class="summary__value">バーコード / キーワード / 手入力</p>
-          </div>
-          <div class="summary">
-            <div class="summary__label">振り返り</div>
-            <p class="summary__value">月別の読了数、現在の状況、年間のまとめ</p>
-          </div>
-          <div class="summary">
-            <div class="summary__label">Pro</div>
-            <p class="summary__value">図書館在庫検索、連続読み取り、深い統計</p>
-          </div>
-        </div>
-      </div>
+      <figure class="hero__figure">
+        <img class="hero__image" src="./assets/bookshelf-preview.png" width="690" height="1500" alt="読書空間の本棚画面。表紙が並ぶ3列のグリッド、検索欄、読書状態の切り替えが見える" fetchpriority="high">
+        <figcaption class="hero__caption">読書空間の本棚画面</figcaption>
+      </figure>
     </header>
 
-    <section>
-      <div class="section-head">
-        <h2>できること</h2>
+    <section class="section" aria-labelledby="features-title">
+      <div class="section__intro">
+        <h2 id="features-title">本と過ごす日々を、ひとつに。</h2>
+        <p>本を見つけたときから、読み終えたあとまで。必要なことを、使いたいときに。</p>
       </div>
-      <p class="section-copy">今のアプリで実際に使える範囲を、そのまま見せる構成にしています。見た目よりも、何ができるかを短く分かりやすく整理しています。</p>
-
-      <div class="features">
+      <div class="feature-list">
         <article class="feature">
-          <div class="feature__kicker">01</div>
-          <h3>本棚を整理する</h3>
-          <p>読みたい、読書中、読了、休止の4状態と、紙の本・電子書籍・図書館・未購入の所有状態で管理できます。</p>
+          <h3>本を登録する</h3>
+          <p>ISBNバーコード、キーワード検索、手入力から追加。気になった本を、その場で本棚に残せます。</p>
         </article>
         <article class="feature">
-          <div class="feature__kicker">02</div>
-          <h3>すばやく登録する</h3>
-          <p>ISBNバーコード、キーワード検索、手入力の3つの導線から本を追加できます。検索結果からそのまま登録できます。</p>
+          <h3>本棚で探す</h3>
+          <p>本棚内検索で登録済みの本を確認。読みたい・読書中・読了・休止の状態と、紙の本・電子書籍・図書館・未購入の所有状態で整理できます。</p>
         </article>
         <article class="feature">
-          <div class="feature__kicker">03</div>
+          <h3>図書館の在庫を調べる（Pro）</h3>
+          <p>都道府県から図書館を選んで登録。本の詳細から、その本の蔵書や貸出状況を確認できます。位置情報の取得は不要です。</p>
+        </article>
+        <article class="feature">
           <h3>読書を振り返る</h3>
-          <p>月別の読了数、年ごとのまとめ、今月の状況をまとめて確認できます。月を選ぶと読了一覧も見られます。</p>
+          <p>メモ、評価、読了日を記録。月別の読了数や年ごとのまとめから、読んだ時間を振り返れます。</p>
         </article>
-        <article class="feature">
-          <div class="feature__kicker">04</div>
+      </div>
+      <div class="secondary-features">
+        <article>
           <h3>おすすめを見る</h3>
-          <p>読書傾向に合う、まだ本棚にない本を表示します。ジャンル付きの読了本が増えるほど精度が上がります。</p>
+          <p>ジャンル付きの読了本が3冊以上になると、読書傾向に合う未登録の本を表示します。おすすめは無料で使えます。</p>
         </article>
-        <article class="feature">
-          <div class="feature__kicker">05</div>
+        <article>
           <h3>iCloudで同期する</h3>
           <p>同じApple IDの端末でデータを使いやすく保てます。iCloud未サインインでもローカルで使えます。</p>
         </article>
-        <article class="feature">
-          <div class="feature__kicker">06</div>
+        <article>
           <h3>Proで広げる</h3>
-          <p>図書館在庫検索、バーコード連続読み取り、深い統計を買い切りで解放します。復元購入にも対応しています。</p>
+          <p>図書館在庫検索に加え、バーコード連続読み取りや深い統計を買い切りで利用できます。購入の復元にも対応しています。</p>
         </article>
       </div>
     </section>
 
-    <section>
-      <div class="section-head">
-        <h2>主な画面</h2>
-      </div>
-      <p class="section-copy">本棚とデータを中心に、追加・詳細・図書館・Proの流れがつながる構成です。画面名はアプリ内の表現に合わせています。</p>
-
-      <table class="table" aria-label="主な画面一覧">
-        <tr>
-          <th>本棚</th>
-          <td>検索、状態切り替え、複数選択、一括変更、追加の入り口をまとめたメイン画面です。</td>
-        </tr>
-        <tr>
-          <th>本の追加</th>
-          <td>バーコード読み取り、キーワード検索、手入力から登録できます。</td>
-        </tr>
-        <tr>
-          <th>本の詳細</th>
-          <td>メモ、評価、読了日、所有状態などを確認・編集できます。</td>
-        </tr>
-        <tr>
-          <th>データ</th>
-          <td>月別の読了数、今月の状況、年別の推移、Proの深掘りデータを表示します。</td>
-        </tr>
-        <tr>
-          <th>あなたへのおすすめ</th>
-          <td>読書傾向に合う、まだ本棚にない本を表示します。</td>
-        </tr>
-      </table>
-    </section>
-
-    <section>
-      <div class="section-head">
-        <h2>データの扱い</h2>
-      </div>
-      <div class="split">
-        <div>
-          <p class="section-copy">読書データは端末内に保存されます。広告表示や広告目的のトラッキングは行いません。利用状況の把握と品質改善には Firebase Analytics を使いますが、読書内容そのものを広告用途に使う設計にはしていません。</p>
-          <p class="note">検索時は、利用者が入力したキーワードやISBNを外部の書誌情報サービスへ送信します。表紙画像の取得に外部通信が発生する場合があります。図書館在庫検索は Pro 機能です。</p>
-        </div>
-
-        <ul class="list">
-          <li><strong>保存</strong> 本棚データ、状態、メモ、評価、読了日、表紙キャッシュ</li>
-          <li><strong>同期</strong> iCloudのprivate databaseを使用</li>
-          <li><strong>検索</strong> 楽天ブックス、Google Books、NDL Search、openBD</li>
-          <li><strong>計測</strong> Firebase Analyticsで利用状況を計測</li>
-        </ul>
+    <section class="section" aria-labelledby="privacy-title">
+      <h2 id="privacy-title">データの扱い</h2>
+      <div class="privacy-summary">
+        <p>本棚と読書記録は端末内に保存し、iCloudにサインインしている場合は本人のiCloudにも同期します。広告目的のトラッキングは行いません。</p>
+        <p>本の検索・おすすめ・図書館検索では必要な情報を外部サービスへ送信し、利用状況は Firebase Analytics で計測します。詳しくは<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
       </div>
     </section>
 
-    <section>
-      <div class="section-head">
-        <h2>お問い合わせ</h2>
-      </div>
-      <p class="section-copy">不具合報告や要望はフォームから受け付けています。確認が必要な内容は、アプリ内の画面名に合わせて伝えてください。</p>
-      <p class="note">開発元: fun-products / <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせフォーム</a></p>
+    <section class="section" aria-labelledby="contact-title">
+      <h2 id="contact-title">お問い合わせ</h2>
+      <p>不具合報告や要望はフォームから受け付けています。確認が必要な内容は、アプリ内の画面名に合わせて伝えてください。</p>
+      <p class="small-copy">開発元: fun-products / <a href="https://forms.gle/rgJPeCP5XkCUHqcw6" target="_blank" rel="noopener">お問い合わせフォーム</a></p>
     </section>
 
     <div class="footer">
